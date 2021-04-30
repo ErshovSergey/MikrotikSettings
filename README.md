@@ -18,6 +18,7 @@ btest password: **btest**
 Создаем списки интерфесов локальной сети (LAN_list) и внешней сети (WAN_list) - Interfaces, вкладка Interfaces list  
 Добавляем в списки интерфейсы.
 
+### Минимальный набор правил для firewall
 ```
 /ip firewall filter
 add action=accept chain=input comment="accept established,related,untracked" connection-state=established,related,untracked
