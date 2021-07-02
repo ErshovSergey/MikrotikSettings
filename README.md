@@ -54,3 +54,11 @@ add comment=" Class D, RFC5771 " distance=249 dst-address=224.0.0.0/4 type=black
 add comment=RFC1122 distance=249 dst-address=240.0.0.0/4 type=blackhole
 ```
 
+### Защита от сканирования
+```
+/ip firewall mangle add chain=input action=add-src-to-address-list tcp-flags=syn connection-state=new protocol=tcp psd=21,3s,3,1 address-list=PSD address-list-timeout=1d in-interface-list=WAN log=yes log-prefix="Port Scan Detection" comment="Port Scan Detection"
+
+/ip firewall raw add chain=prerouting action=drop in-interface-list=WAN log=no log-prefix="" src-address-list=PSD comment="Port Scan Detection"
+```
+
+
