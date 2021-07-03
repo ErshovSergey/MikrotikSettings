@@ -18,7 +18,7 @@ btest password: **btest**
 Создаем списки интерфесов локальной сети (LAN_list) и внешней сети (WAN_list) - Interfaces, вкладка Interfaces list  
 Добавляем в списки интерфейсы.
 
-### Минимальный набор правил для firewall
+#### Минимальный набор правил для firewall
 ```
 /ip firewall filter
 add action=accept chain=input comment="accept established,related,untracked" connection-state=established,related,untracked
@@ -27,13 +27,13 @@ add action=accept chain=input comment="accept ICMP" protocol=icmp
 ;;add action=accept chain=input comment="accept to local loopback (for CAPsMAN)" dst-address=127.0.0.1
 add action=drop chain=input comment="drop all not coming from LAN" in-interface-list=!LAN_list
 ```
-### NAT
+#### NAT
 ```
 /ip firewall nat
 add action=masquerade chain=srcnat comment="defconf: masquerade" ipsec-policy=out,none \
     out-interface-list=WAN_list
 ```
-### Черная дыра для "неправильных" адресов  
+#### Черная дыра для "неправильных" адресов  
 ```
 /ip route
 add comment=" RFC1122 , RFC3330 \? RFC1700" distance=249 dst-address=0.0.0.0/8 type=blackhole
@@ -53,12 +53,17 @@ add comment="RFC5737 " distance=249 dst-address=203.0.113.0/24 type=blackhole
 add comment=" Class D, RFC5771 " distance=249 dst-address=224.0.0.0/4 type=blackhole
 add comment=RFC1122 distance=249 dst-address=240.0.0.0/4 type=blackhole
 ```
-
-### Защита от сканирования
+#### Защита от сканирования
 ```
 /ip firewall mangle add chain=input action=add-src-to-address-list tcp-flags=syn connection-state=new protocol=tcp psd=21,3s,3,1 address-list=PSD address-list-timeout=1d in-interface-list=WAN log=yes log-prefix="Port Scan Detection" comment="Port Scan Detection"
 
 /ip firewall raw add chain=prerouting action=drop in-interface-list=WAN log=no log-prefix="" src-address-list=PSD comment="Port Scan Detection"
 ```
 
-
+### CAPS  
+#### CAPS channel
+```
+/caps-man channel
+add band=2ghz-b/g/n control-channel-width=20mhz extension-channel=disabled frequency=2462,2437,2412 name=channel-2.4 reselect-interval=1h save-selected=yes
+add band=5ghz-a/n/ac extension-channel=Ceee frequency=5180,5220,5745,5785 name=channel-5 reselect-interval=1d save-selected=yes
+```
