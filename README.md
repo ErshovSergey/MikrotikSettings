@@ -56,7 +56,6 @@ add comment=RFC1122 distance=249 dst-address=240.0.0.0/4 type=blackhole
 #### Защита от сканирования
 ```
 /ip firewall mangle add chain=input action=add-src-to-address-list tcp-flags=syn connection-state=new protocol=tcp psd=21,3s,3,1 address-list=PSD address-list-timeout=1d in-interface-list=WAN log=yes log-prefix="Port Scan Detection" comment="Port Scan Detection"
-
 /ip firewall raw add chain=prerouting action=drop in-interface-list=WAN log=no log-prefix="" src-address-list=PSD comment="Port Scan Detection"
 ```
 
@@ -66,4 +65,10 @@ add comment=RFC1122 distance=249 dst-address=240.0.0.0/4 type=blackhole
 /caps-man channel
 add band=2ghz-b/g/n control-channel-width=20mhz extension-channel=disabled frequency=2462,2437,2412 name=channel-2.4 reselect-interval=1h save-selected=yes
 add band=5ghz-a/n/ac extension-channel=Ceee frequency=5180,5220,5745,5785 name=channel-5 reselect-interval=1d save-selected=yes
+```
+#### CAPS security
+```
+/caps-man security
+add authentication-types=wpa2-psk encryption=aes-ccm group-key-update=1h name=security passphrase=PssworD
+add authentication-types=wpa2-psk encryption=aes-ccm group-key-update=1h name=security5 passphrase=PssworD
 ```
