@@ -54,6 +54,22 @@ add comment="defconf: Class D, RFC5771 " distance=249 dst-address=224.0.0.0/4 ty
 add comment="defconf: RFC1122" distance=249 dst-address=240.0.0.0/4 type=blackhole
 add comment="defconf: RFC6890" distance=249 dst-address=255.255.255.255/32 type=blackhole
 ```
+IPv6 Address Lists
+
+List of IPv6 addresses that should be dropped instantly
+```
+/ipv6  route 
+add comment="addresses that should be dropped instantly" distance=249 type=unreachable dst-address=::1/128
+add comment="addresses that should be dropped instantly" distance=249 type=unreachable dst-address=::ffff:0:0/96
+add comment="addresses that should be dropped instantly" distance=249 type=unreachable dst-address=2001::/23
+add comment="addresses that should be dropped instantly" distance=249 type=unreachable dst-address=2001:db8::/32
+add comment="addresses that should be dropped instantly" distance=249 type=unreachable dst-address=2001:10::/28
+add comment="addresses that should be dropped instantly" distance=249 type=unreachable dst-address=::/96
+add comment="addresses that are not globally routable" distance=249 type=unreachable dst-address=100::/64
+add comment="addresses that are not globally routable" distance=249 type=unreachable dst-address=2001::/32
+add comment="addresses that are not globally routable" distance=249 type=unreachable dst-address=2001:2::/48
+add comment="addresses that are not globally routable" distance=249 type=unreachable dst-address=fc00::/7
+```
 #### Защита от сканирования
 ```
 /ip firewall mangle add chain=input action=add-src-to-address-list tcp-flags=syn connection-state=new protocol=tcp psd=21,3s,3,1 address-list=PSD address-list-timeout=1d in-interface-list=WAN log=yes log-prefix="Port Scan Detection" comment="Port Scan Detection"
