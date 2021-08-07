@@ -36,22 +36,23 @@ add action=masquerade chain=srcnat comment="defconf: masquerade" ipsec-policy=ou
 #### Черная дыра для "неправильных" адресов  
 ```
 /ip route
-add comment=" RFC1122 , RFC3330 \? RFC1700" distance=249 dst-address=0.0.0.0/8 type=blackhole
-add comment="RFC 1918" distance=249 dst-address=10.0.0.0/8 type=blackhole
-add comment="RFC1700, page 181" distance=249 dst-address=14.0.0.0/8 type=blackhole
-add comment="RFC6598 " distance=249 dst-address=100.64.0.0/10 type=blackhole
-add comment=https://wiki.mikrotik.com/wiki/BOGON_Address_List distance=249 dst-address=127.0.0.0/8 type=blackhole
-add comment=" RFC3927" distance=249 dst-address=169.254.0.0/16 type=blackhole
-add comment="RFC 1918" distance=249 dst-address=172.16.0.0/12 type=blackhole
-add comment=RFC6890 distance=249 dst-address=192.0.0.0/24 type=blackhole
-add comment="RFC5737 " distance=249 dst-address=192.0.2.0/24 type=blackhole
-add comment=RFC3068 distance=249 dst-address=192.88.99.0/24 type=blackhole
-add comment="RFC 1918" distance=249 dst-address=192.168.0.0/16 type=blackhole
-add comment="RFC2544, RFC6815 " distance=249 dst-address=198.18.0.0/15 type=blackhole
-add comment="RFC5737 " distance=249 dst-address=198.51.100.0/24 type=blackhole
-add comment="RFC5737 " distance=249 dst-address=203.0.113.0/24 type=blackhole
-add comment=" Class D, RFC5771 " distance=249 dst-address=224.0.0.0/4 type=blackhole
-add comment=RFC1122 distance=249 dst-address=240.0.0.0/4 type=blackhole
+add comment="defconf:  RFC1122, RFC3330, RFC1700" distance=249 dst-address=0.0.0.0/8 type=blackhole
+add comment="defconf: RFC1918" distance=249 dst-address=10.0.0.0/8 type=blackhole
+add comment="defconf: RFC1700, page 181" distance=249 dst-address=14.0.0.0/8 type=blackhole
+add comment="defconf: RFC6598" distance=249 dst-address=100.64.0.0/10 type=blackhole
+add comment="defconf: https://wiki.mikrotik.com/wiki/BOGON_Address_List distance=249" dst-address=127.0.0.0/8 type=blackhole
+add comment="defconf: RFC3927" distance=249 dst-address=169.254.0.0/16 type=blackhole
+add comment="defconf: RFC1918" distance=249 dst-address=172.16.0.0/12 type=blackhole
+add comment="defconf: RFC6890" distance=249 dst-address=192.0.0.0/24 type=blackhole
+add comment="defconf: RFC5737" distance=249 dst-address=192.0.2.0/24 type=blackhole
+add comment="defconf: RFC3068" distance=249 dst-address=192.88.99.0/24 type=blackhole
+add comment="defconf: RFC1918" distance=249 dst-address=192.168.0.0/16 type=blackhole
+add comment="defconf: RFC2544, RFC6815 " distance=249 dst-address=198.18.0.0/15 type=blackhole
+add comment="defconf: RFC5737" distance=249 dst-address=198.51.100.0/24 type=blackhole
+add comment="defconf: RFC5737 " distance=249 dst-address=203.0.113.0/24 type=blackhole
+add comment="defconf: Class D, RFC5771 " distance=249 dst-address=224.0.0.0/4 type=blackhole
+add comment="defconf: RFC1122" distance=249 dst-address=240.0.0.0/4 type=blackhole
+add comment="defconf: RFC6890" distance=249 dst-address=255.255.255.255/32 type=blackhole
 ```
 #### Защита от сканирования
 ```
