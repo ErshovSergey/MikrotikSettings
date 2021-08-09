@@ -1,4 +1,6 @@
 # MikrotikSettings - настройки RouterOS Mikrotik, чтобы не искать
+[DNS over HTTPS (DoH) на RouterOS](./DNSoverHTTPS(DoH).md)  
+[Настройка mtu и l2mtu если провайдер Билайн](./beelinel2tp_mtu_l2mtu.md)  
 ### Проблема - сайты загружаются выборочно и неполностью  
 Размер MTU при подключении l2tp, IPoE не обеспечивает правильной загрузки  
 Решение  
