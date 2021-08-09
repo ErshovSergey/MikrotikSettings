@@ -5,11 +5,14 @@
 #### Минимальный набор правил для firewall  
 ```
 /ip firewall filter
-add action=accept chain=input comment="accept established,related,untracked" connection-state=established,related,untracked
-add action=drop chain=input comment="drop invalid" connection-state=invalid
-add action=accept chain=input comment="accept ICMP" protocol=icmp
+add action=accept chain=input comment="ALLOW ESTABLISHED, RELATED, UNTRACKED" connection-state=established,related,untracked
+add action=accept chain=forward comment="ALLOW ESTABLISHED, RELATED, UNTRACKED" connection-state=established,related in-interface-list=WAN
+add action=drop chain=input comment="DROP INVALID" connection-state=invalid
+add action=accept chain=input comment="defconf: accept ICMP" protocol=icmp
 ;;add action=accept chain=input comment="accept to local loopback (for CAPsMAN)" dst-address=127.0.0.1
-add action=drop chain=input comment="drop all not coming from LAN" in-interface-list=!LAN_list
+;;add action=drop chain=input comment="defconf:drop all not coming from LAN" in-interface-list=!LAN_list
+add action=drop chain=forward comment="DROP INVALID" connection-state=invalid
+add action=drop chain=forward comment="DROP ALL" connection-state=new connection-nat-state=!dstnat in-interface-list=WAN
 ```
 #### NAT  
 ```
