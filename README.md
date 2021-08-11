@@ -3,6 +3,7 @@
 - [Настройка mtu и l2mtu если провайдер Билайн](./beelinel2tp_mtu_l2mtu.md)  
 - [speedtest с Mikrotik](./speedtest-with-mikrotik.md)  
 - [firewall on RouterOS](./firewall-on-routeros.md)  
+- [Mikrotik CHR - обновление](./MikrotikCHR-update.md)  
 ### Проблема - сайты загружаются выборочно и неполностью  
 Размер MTU при подключении l2tp, IPoE не обеспечивает правильной загрузки  
 Решение  
