@@ -2,6 +2,7 @@
 ## Скрипт  SendMailAfterReboot
 ```
 ###################################################
+# The ntp package is required for the correct functionality
 # permission - read, write, sensitive, policy, password, sniff, test, ftp
 # email account from
 :local Eaccount "<emailacc>@gmail.com";
