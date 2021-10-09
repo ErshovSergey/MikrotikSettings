@@ -32,7 +32,7 @@ body=("$eb"."\n\n Logs \n\n"."$logMessages ");
 ```
 ## Правило для запуска
 ```
-/system scheduler
-add name=SendMailAfterReboot on-event=":delay 15\r\
+/system scheduler 
+add disabled=yes name=SendMailAfterReboot on-event=":delay 15\r\
     \n/system script run SendMailAfterReboot" policy=ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon start-time=startup
 ```
