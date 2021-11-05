@@ -15,16 +15,16 @@ DCHP сервер
 ```
 
 ##### Настройка роутинга подключенных хостов через WireGuard  
+```
+/ip firewall mangle
+add action=change-mss chain=forward new-mss=1280 out-interface=wg0 passthrough=yes protocol=tcp tcp-flags=syn tcp-mss=1281-65535
+add action=change-mss chain=forward in-interface=wg0 new-mss=1280 passthrough=yes protocol=tcp tcp-flags=syn tcp-mss=1281-65535
+```
+
 [по мотивам](https://forum.mikrotik.com/viewtopic.php?t=169011#p829164)  
 ```
 /routing table add fib name=via-wg
 /routing rule add action=lookup disabled=no src-address=172.16.1.0/24 table=via-wg
 /ip firewall nat add action=masquerade chain=srcnat out-interface=wg0
 /ip route add dst-address=0.0.0.0/0 gateway=10.66.66.1 routing-table=via-wg
-```
-
-```
-/ip firewall mangle
-add action=change-mss chain=forward new-mss=1280 out-interface=wg0 passthrough=yes protocol=tcp tcp-flags=syn tcp-mss=1281-65535
-add action=change-mss chain=forward in-interface=wg0 new-mss=1280 passthrough=yes protocol=tcp tcp-flags=syn tcp-mss=1281-65535
 ```
