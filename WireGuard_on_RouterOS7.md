@@ -22,3 +22,9 @@ DCHP сервер
 /ip firewall nat add action=masquerade chain=srcnat out-interface=wg0
 /ip route add dst-address=0.0.0.0/0 gateway=10.66.66.1 routing-table=via-wg
 ```
+
+```
+/ip firewall mangle
+add action=change-mss chain=forward new-mss=1280 out-interface=wg0 passthrough=yes protocol=tcp tcp-flags=syn tcp-mss=1281-65535
+add action=change-mss chain=forward in-interface=wg0 new-mss=1280 passthrough=yes protocol=tcp tcp-flags=syn tcp-mss=1281-65535
+```
