@@ -17,8 +17,8 @@ DCHP сервер
 ##### Настройка роутинга подключенных хостов через WireGuard  
 ```
 /ip firewall mangle
-add action=change-mss chain=forward new-mss=1280 out-interface=wg0 passthrough=yes protocol=tcp tcp-flags=syn tcp-mss=1281-65535
-add action=change-mss chain=forward in-interface=wg0 new-mss=1280 passthrough=yes protocol=tcp tcp-flags=syn tcp-mss=1281-65535
+add action=change-mss chain=forward new-mss=1420 out-interface=wg0 passthrough=yes protocol=tcp tcp-flags=syn tcp-mss=1421-65535
+add action=change-mss chain=forward in-interface=wg0 new-mss=1420 passthrough=yes protocol=tcp tcp-flags=syn tcp-mss=1421-65535
 ```
 
 [по мотивам](https://forum.mikrotik.com/viewtopic.php?t=169011#p829164)  
