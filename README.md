@@ -6,6 +6,7 @@
 - [Mikrotik CHR - обновление](./MikrotikCHR-update.md)  
 - [SendMailAfterReboot - отправка email после перезагрузки](./SendMailAfterReboot.md)  
 - [Настройка Mikrotik как клиента WireGuard](./WireGuard_on_RouterOS7.md)
+- [Маскировка роутера в сети провайдера от TTL-фильтра.](./mikrotik_ttl_mask.md)
 ### Проблема - сайты загружаются выборочно и неполностью  
 Размер MTU при подключении l2tp, IPoE не обеспечивает правильной загрузки  
 Решение  
