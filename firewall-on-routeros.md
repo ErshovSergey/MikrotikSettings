@@ -74,3 +74,9 @@ add band=5ghz-a/n/ac extension-channel=Ceee frequency=5180,5220,5745,5785 name=c
 add authentication-types=wpa2-psk encryption=aes-ccm group-key-update=1h name=security passphrase=PssworD
 add authentication-types=wpa2-psk encryption=aes-ccm group-key-update=1h name=security5 passphrase=PssworD
 ```
+#### Если mtu на выходном интерфейсе менее 1500, то ставим нужный размер
+```
+/ip firewall mangle
+add action=change-mss chain=forward new-mss=1320 out-interface=WAN_interface passthrough=yes protocol=tcp tcp-flags=syn tcp-mss=1321-65535
+add action=change-mss chain=forward in-interface=WAN_interface new-mss=1320 passthrough=yes protocol=tcp tcp-flags=syn tcp-mss=1321-65535
+```
